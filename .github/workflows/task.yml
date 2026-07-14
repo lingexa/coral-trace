@@ -6,10 +6,6 @@ on:
     - cron: '0 20 * * *'
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-
 jobs:
   generate-and-upload:
     runs-on: ubuntu-latest
@@ -154,7 +150,7 @@ jobs:
 
       - name: Upload word history (for persistence)
         uses: actions/upload-artifact@v4
-        if: success()
+        if: always()
         with:
           name: word-history
           path: |
@@ -163,7 +159,7 @@ jobs:
           overwrite: true
 
       - name: Commit word history to repository
-        if: success()
+        if: always()
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
