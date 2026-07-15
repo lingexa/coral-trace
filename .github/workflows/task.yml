@@ -166,6 +166,7 @@ jobs:
           git add -f output/history/all_generated_words.json
           if ! git diff --staged --quiet; then
             git commit -m "Update word history - Run #${{ github.run_number }}"
+            git pull --rebase
             git push
             echo "Word history committed - NO repeats across runs!"
           else
