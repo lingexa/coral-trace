@@ -168,7 +168,22 @@ def upload_to_all_platforms(video_path, caption, word, reel_data=None):
 
     if not Path(video_path).exists():
         print(f"Video file not found: {video_path}")
-        return results
+            # === UPLOAD STATUS REPORT ===
+    print("\n" + "=" * 60)
+    print("UPLOAD STATUS REPORT")
+    print("=" * 60)
+    success_list = [p.lower() for p in results.get("platforms_successful", [])]
+    failed_list = [p.lower() for p in results.get("platforms_failed", [])]
+    skipped_list = [p.lower() for p in results.get("platforms_skipped", [])]
+    for pname in ["INSTAGRAM", "FACEBOOK", "YOUTUBE", "THREADS", "TIKTOK", "TWITTER", "VK", "TELEGRAM"]:
+        pl = pname.lower()
+        if pl in success_list: status = "SUCCESS"
+        elif pl in failed_list: status = "FAILED"
+        elif pl in skipped_list: status = "SKIPPED"
+        else: status = "-"
+        print(f"{pname}: {status}")
+    print("=" * 60)
+    return results
 
     platforms = [
         ("facebook", upload_to_facebook, "Facebook"),
@@ -277,6 +292,21 @@ def upload_to_all_platforms(video_path, caption, word, reel_data=None):
     print(f"\nResults saved: {results_file}")
     print("="*80)
 
+        # === UPLOAD STATUS REPORT ===
+    print("\n" + "=" * 60)
+    print("UPLOAD STATUS REPORT")
+    print("=" * 60)
+    success_list = [p.lower() for p in results.get("platforms_successful", [])]
+    failed_list = [p.lower() for p in results.get("platforms_failed", [])]
+    skipped_list = [p.lower() for p in results.get("platforms_skipped", [])]
+    for pname in ["INSTAGRAM", "FACEBOOK", "YOUTUBE", "THREADS", "TIKTOK", "TWITTER", "VK", "TELEGRAM"]:
+        pl = pname.lower()
+        if pl in success_list: status = "SUCCESS"
+        elif pl in failed_list: status = "FAILED"
+        elif pl in skipped_list: status = "SKIPPED"
+        else: status = "-"
+        print(f"{pname}: {status}")
+    print("=" * 60)
     return results
 
 
