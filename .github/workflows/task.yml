@@ -1,4 +1,4 @@
-name: task
+﻿name: ling-main
 
 on:
   schedule:
@@ -60,7 +60,7 @@ jobs:
           echo "Installing Liberation fonts as fallback..."
           fc-list | grep -i "Liberation" | head -5
           
-          echo "✅ Fonts ready for Lingexa!"
+          echo "Γ£à Fonts ready for Lingexa!"
           
       - name: Install Python dependencies
         run: |
