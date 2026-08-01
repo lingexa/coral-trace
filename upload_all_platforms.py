@@ -1,4 +1,4 @@
-"""
+﻿"""
 Lingexa - Unified Social Media Upload Script
 Uploads vocabulary reels to all connected social media platforms
 """
@@ -81,7 +81,7 @@ def generate_caption(reel_data, platform="facebook"):
     
     if platform == "facebook":
         lines = [
-            f"📚 Learn 5 New English Words with Lingexa!",
+            f"≡ƒôÜ Learn 5 New English Words with Lingexa!",
             f"",
             f"Today's Vocabulary Lesson:",
             f"",
@@ -94,21 +94,21 @@ def generate_caption(reel_data, platform="facebook"):
             example = w.get("example", "")
             
             lines.append(f"{i}. {word.upper()} ({pos})")
-            lines.append(f"   → {definition}")
+            lines.append(f"   ΓåÆ {definition}")
             lines.append(f"   Example: {example}")
             lines.append(f"")
         
         lines.extend([
-            f"💡 Save this post and practice these words today!",
-            f"👍 Like if you learned something new!",
-            f"🔔 Follow Lingexa for daily vocabulary lessons!",
+            f"≡ƒÆí Save this post and practice these words today!",
+            f"≡ƒæì Like if you learned something new!",
+            f"≡ƒöö Follow Lingexa for daily vocabulary lessons!",
             f"",
             f"#lingexa #vocabulary #learnenglish #wordoftheday #englishlearning #vocabularybuilder #englishwords #studyenglish #dailyvocabulary #englishgrammar #esl #englishpractice #languagelearning",
         ])
         
     elif platform == "instagram":
         lines = [
-            f"📚 5 New Words to Learn Today!",
+            f"≡ƒôÜ 5 New Words to Learn Today!",
             f"",
         ]
         
@@ -122,8 +122,8 @@ def generate_caption(reel_data, platform="facebook"):
             lines.append(f"")
         
         lines.extend([
-            f"💡 Save & practice!",
-            f"🔔 Follow @lingexa for daily lessons!",
+            f"≡ƒÆí Save & practice!",
+            f"≡ƒöö Follow @lingexa for daily lessons!",
             f"",
             f"#lingexa #vocabulary #learnenglish #wordoftheday #englishlearning #vocabularybuilder #englishwords #esl #englishpractice #languagelearning",
         ])
@@ -168,60 +168,7 @@ def upload_to_all_platforms(video_path, caption, word, reel_data=None):
 
     if not Path(video_path).exists():
         print(f"Video file not found: {video_path}")
-                    # ====== UPLOAD STATUS REPORT ======
-    print("\n" + "=" * 60)
-    print("UPLOAD STATUS REPORT")
-    print("=" * 60)
-    uploads = results.get("uploads", {})
-    success_count = 0
-    fail_count = 0
-    skip_count = 0
-    for pname, pkey in [("INSTAGRAM", "instagram"), ("FACEBOOK", "facebook"), ("YOUTUBE", "youtube"),
-                          ("THREADS", "threads"), ("TIKTOK", "tiktok"), ("TWITTER", "twitter"),
-                          ("VK", "vk"), ("TELEGRAM", "telegram")]:
-        pinfo = uploads.get(pkey, {})
-        if pinfo and pinfo.get("status") == "success":
-            pid = pinfo.get("id", "N/A")
-            print(f"  {pname}: SUCCESS (ID: {pid})")
-            success_count += 1
-        elif pinfo and pinfo.get("status") == "skipped":
-            reason = pinfo.get("reason", "unknown")
-            print(f"  {pname}: SKIPPED - {reason}")
-            skip_count += 1
-        elif pinfo:
-            err = str(pinfo.get("error", pinfo.get("reason", "unknown")))[:100]
-            print(f"  {pname}: FAILED - {err}")
-            fail_count += 1
-        else:
-            pl = pkey.lower()
-            failed = pl in [p.lower() for p in results.get("platforms_failed", [])]
-            skipped = pl in [p.lower() for p in results.get("platforms_skipped", [])]
-            if failed: print(f"  {pname}: FAILED"); fail_count += 1
-            elif skipped: print(f"  {pname}: SKIPPED"); skip_count += 1
-            else: print(f"  {pname}: -")
-    print("=" * 60)
-    print(f"  Results: {success_count} success, {fail_count} failed, {skip_count} skipped")
-    print("=" * 60)
-
-    uploads = results.get("uploads", {})
-    for pname, pkey in [("INSTAGRAM", "instagram"), ("FACEBOOK", "facebook"), ("YOUTUBE", "youtube"),
-                          ("THREADS", "threads"), ("TIKTOK", "tiktok"), ("TWITTER", "twitter"),
-                          ("VK", "vk"), ("TELEGRAM", "telegram")]:
-        pinfo = uploads.get(pkey, {})
-        if pinfo and pinfo.get("status") == "success":
-            pid = pinfo.get("id", "N/A")
-            print(f"{pname}: SUCCESS (ID: {pid})")
-        elif pinfo:
-            err = str(pinfo.get("error", pinfo.get("reason", "unknown")))[:80]
-            print(f"{pname}: FAILED - {err}")
-        else:
-            pl = pkey.lower()
-            failed = pl in [p.lower() for p in results.get("platforms_failed", [])]
-            skipped = pl in [p.lower() for p in results.get("platforms_skipped", [])]
-            print(f"{pname}: {'FAILED' if failed else ('SKIPPED' if skipped else '-')}")
-    print("=" * 60)
-
-    return results
+        return results
 
     platforms = [
         ("facebook", upload_to_facebook, "Facebook"),
@@ -330,7 +277,6 @@ def upload_to_all_platforms(video_path, caption, word, reel_data=None):
     print(f"\nResults saved: {results_file}")
     print("="*80)
 
-        # === UPLOAD STATUS REPORT ===
     print("\n" + "=" * 60)
     print("UPLOAD STATUS REPORT")
     print("=" * 60)
@@ -345,6 +291,7 @@ def upload_to_all_platforms(video_path, caption, word, reel_data=None):
         else: status = "-"
         print(f"{pname}: {status}")
     print("=" * 60)
+
     return results
 
 
